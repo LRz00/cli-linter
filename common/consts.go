@@ -5,7 +5,12 @@ const (
 	python     = "python"
 )
 
-var Extensions = map[string]string{
+var SupportedFileFormats = map[string]string{
 	javascript: ".js",
 	python:     ".py",
+}
+
+type LintSuggestion struct {
+	Rule   string
+	Reason string
 }
