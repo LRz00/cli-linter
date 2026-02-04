@@ -4,17 +4,9 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-)
 
-const (
-	javascript = "javascript"
-	python     = "python"
+	"github.com/LRz00/cli-lint/common"
 )
-
-var extensions = map[string]string{
-	javascript: ".js",
-	python:     ".py",
-}
 
 func CollectFiles(root string, lang string) ([]string, error) {
 	var files []string
@@ -22,7 +14,7 @@ func CollectFiles(root string, lang string) ([]string, error) {
 	// WalkDir walks the file tree rooted at root, calling fn for each file or directory in the tree, including root.
 	err := filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
 
-		ext, ok := extensions[lang]
+		ext, ok := common.Extensions[lang]
 		if !ok {
 			return fmt.Errorf("unsupported language: %s", lang)
 		}
